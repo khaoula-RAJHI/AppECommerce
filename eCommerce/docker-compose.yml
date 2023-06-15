@@ -15,7 +15,7 @@ services:
   giftinyspringproject-app:
     depends_on:
       - mysqldb
-    image: khaoularajhi/giftinyspringproject-app:latest
+    image: khaoularajhi/giftinyspringproject:latest
     container_name: giftinyspringproject-app
     restart: on-failure
     env_file: ./.env
