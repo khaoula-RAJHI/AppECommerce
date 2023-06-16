@@ -33,6 +33,13 @@ services:
       - .m2:/root/.m2
     stdin_open: true
     tty: true
+  giftinyangularproject-app:
+    #The docker file in FE, builds and provides the docker image.
+    image: khaoularajhi/giftinyangularproject:latest
+    ports:
+      - 4200:4200 #Forwars the exposed port 4200 on the container to port 4200 on the host machine
+    links: 
+      - giftinyspringproject-app
 
 volumes:
   db:
