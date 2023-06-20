@@ -12,11 +12,11 @@ services:
       - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
     volumes:
       - db:/var/lib/mysql
-  giftinyspringproject-app:
+  springprojectt-app:
     depends_on:
       - mysqldb
-    image: khaoularajhi/giftinyspringproject:latest
-    container_name: giftinyspringproject-app
+    image: khaoularajhi/springprojectt:latest
+    container_name: springprojectt-app
     restart: on-failure
     env_file: ./.env
     ports:
@@ -33,13 +33,13 @@ services:
       - .m2:/root/.m2
     stdin_open: true
     tty: true
-  giftinyangularproject-app:
+  angularproject-app:
     #The docker file in FE, builds and provides the docker image.
-    image: khaoularajhi/giftinyangularproject:latest
+    image: khaoularajhi/angularproject:latest
     ports:
       - 4200:4200 #Forwars the exposed port 4200 on the container to port 4200 on the host machine
     links: 
-      - giftinyspringproject-app
+      - springprojectt-app
 
 volumes:
   db:
