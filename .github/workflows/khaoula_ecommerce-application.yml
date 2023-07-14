@@ -29,6 +29,17 @@ jobs:
         with:
           name: java-app
           path: '${{ github.workspace }}/target/*.jar'
+      - name: Build Docker
+        run: docker build -t khaoularajhi/springprojectt-app .
+      
+      - name: Docker Login
+        run: docker login -u khaoularajhi -p khaoula07494213
+      
+      - name: Docker Push
+        run: docker push khaoularajhi/springprojectt-app
+
+      - name: Start Container
+        run: docker-compose up --build --force-recreate -d
 
   deploy:
     runs-on: windows-latest
