@@ -29,24 +29,6 @@ jobs:
         with:
           name: java-app
           path: '${{ github.workspace }}/target/*.jar'
-      
-      - name: Docker Login
-        run: docker login -u khaoularajhi -p khaoula07494213
-        
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      
-      - name: Build and Push Docker Image
-        uses: docker/build-push-action@v2
-        with:
-         context: .
-         push: true
-         tags: khaoularajhi/springprojectt:latest
-         build-args: |
-          JAR_FILE=java-app/*.jar
-
-      - name: Start Container
-        run: docker-compose up --build --force-recreate -d
 
   deploy:
     runs-on: windows-latest
@@ -69,17 +51,4 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0F34B9B5F3B34A1B9F2CF999DBEF5265 }}
           package: '*.jar'
-        
-  ACR:
-    runs-on: windows-latest
-    needs: build
-    steps:
-      - name: Tag image ACR
-        run: docker tag springprojectt-app ecommerceapp.azurecr.io/springprojectt-app
-        
-      - name: ACR Login
-        run: docker login ecommerceapp.azurecr.io -u ecommerceapp -p vBuGO8/nZM+pI/mb/bU/ZsbRzpOOxraCGCePuz4qCE+ACRDeScBc
-      
-      - name: ACR Push
-        run: docker push ecommerceapp.azurecr.io/springprojectt-app
         
