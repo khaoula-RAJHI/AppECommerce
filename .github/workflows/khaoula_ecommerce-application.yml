@@ -32,6 +32,9 @@ jobs:
       
       - name: Docker Login
         run: docker login -u khaoularajhi -p khaoula07494213
+        
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
       
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v2
