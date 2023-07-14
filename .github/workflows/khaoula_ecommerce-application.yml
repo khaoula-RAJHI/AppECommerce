@@ -69,6 +69,7 @@ jobs:
         
   ACR:
     runs-on: windows-latest
+    needs: build
     steps:
       - name: Tag image ACR
         run: docker tag springprojectt-app ecommerceapp.azurecr.io/springprojectt-app
