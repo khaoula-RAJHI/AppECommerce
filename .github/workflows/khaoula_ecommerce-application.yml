@@ -29,6 +29,30 @@ jobs:
         with:
           name: java-app
           path: '${{ github.workspace }}/target/*.jar'
+          
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: khaoularajhi}
+          password: khaoula07494213
+        
+      - name: Login to Azure Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ecommerceapp.azurecr.io
+          username: ecommerceapp
+          password: vBuGO8/nZM+pI/mb/bU/ZsbRzpOOxraCGCePuz4qCE+ACRDeScBc
+          
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: |
+            khaoularajhi/springprojectt:latest
+            ecommerceapp.azurecr.io/springprojectt:latest
+
 
   deploy:
     runs-on: windows-latest
