@@ -41,7 +41,7 @@ jobs:
         with:
           registry: ecommerceapp.azurecr.io
           username: ${{ secrets.ecommerceapp}}
-          password: ${{ secrets.vBuGO8/nZM+pI/mb/bU/ZsbRzpOOxraCGCePuz4qCE+ACRDeScBc}}
+          password: ${{ secrets.nkLELD+JCAxI08Z54JTQtqOEtFDNN51gQmw+LhZquA+ACRAPU7bs}}
           
       - name: Build and push
         uses: docker/build-push-action@v2
