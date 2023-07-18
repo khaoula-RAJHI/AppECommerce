@@ -1,4 +1,4 @@
 FROM openjdk:11
 EXPOSE 8081
-COPY target/java-app.jar tpAchatProject.jar
+COPY C:/Users/khawl/Desktop/SPRING/target/tpAchatProject-1.0.jar tpAchatProject.jar
 ENTRYPOINT ["java","-jar","/tpAchatProject.jar"]
