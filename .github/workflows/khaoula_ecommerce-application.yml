@@ -68,6 +68,6 @@ jobs:
           
       - name: Build and push
         run: |
-         docker build -t khaoularajhi/springprojectt-app .
-         docker push khaoularajhi/springprojectt-app
+         docker build -t khaoularajhi/springprojectt:latest .
+         docker push khaoularajhi/springprojectt
         
