@@ -68,6 +68,7 @@ jobs:
           
       - name: Build and push
         run: |
-         docker build -t khaoularajhi/springprojectt:latest .
+         docker build --tag=springprojectt:latest .
+         docker tag springprojectt khaoularajhi/springprojectt
          docker push khaoularajhi/springprojectt
         
