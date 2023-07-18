@@ -52,23 +52,4 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0F34B9B5F3B34A1B9F2CF999DBEF5265 }}
           package: '*.jar'
-          
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
-        with:
-          username: khaoularajhi
-          password: khaoula07494213
-        
-      - name: Login to Azure Container Registry
-        uses: docker/login-action@v1
-        with:
-          registry: ecommerceapp.azurecr.io
-          username: ecommerceapp
-          password: ${{ secrets.AZUREAPPSERVICE_CONTAINER_REGISTRY }}
-          
-      - name: Build and push
-        run: |
-         docker build --tag=springprojectt:latest -f Dockerfile .
-         docker tag springprojectt khaoularajhi/springprojectt
-         docker push khaoularajhi/springprojectt
         
