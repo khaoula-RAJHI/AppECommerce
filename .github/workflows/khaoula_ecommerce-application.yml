@@ -14,7 +14,8 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
       - name: Set up Java version
         uses: actions/setup-java@v1
@@ -29,7 +30,7 @@ jobs:
         with:
           name: java-app
           path: '${{ github.workspace }}/target/*.jar'
-
+          
   deploy:
     runs-on: windows-latest
     needs: build
@@ -51,3 +52,4 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0F34B9B5F3B34A1B9F2CF999DBEF5265 }}
           package: '*.jar'
+        
