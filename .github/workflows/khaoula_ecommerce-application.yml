@@ -23,10 +23,7 @@ jobs:
           java-version: '11'
 
       - name: Build with Maven
-        run: mvn clean install
-        
-      #- name: Package with Maven
-        #run: mvn package     
+        run: mvn clean install   
     
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
