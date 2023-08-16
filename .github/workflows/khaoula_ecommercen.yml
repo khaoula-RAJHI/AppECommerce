@@ -27,7 +27,7 @@ jobs:
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
-          name: java-app
+          name: java-app-new
           path: '${{ github.workspace }}/target/*.war'
           
       - name: Login to DockerHub
@@ -63,7 +63,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
-          name: java-app
+          name: java-app-new
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
