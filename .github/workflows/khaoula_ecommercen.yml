@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy JAR app to Azure Web App - ecommerce-application
+name: Build and deploy WAR app to Azure Web App - EcommerceN
 
 on:
   push:
@@ -14,8 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
       - name: Set up Java version
         uses: actions/setup-java@v1
@@ -23,14 +22,14 @@ jobs:
           java-version: '11'
 
       - name: Build with Maven
-        run: mvn clean install   
-    
+        run: mvn clean install
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
-          name: java-app
-          path: '${{ github.workspace }}/target/*.jar'
-    
+          name: java-app-new
+          path: '${{ github.workspace }}/target/*.war'
+          
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
@@ -52,7 +51,7 @@ jobs:
          
       - name: Start container
         run: docker-compose up -d
-                  
+
   deploy:
     runs-on: ubuntu-latest
     needs: build
@@ -64,14 +63,13 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
-          name: java-app
+          name: java-app-new
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'ecommerce-application'
+          app-name: 'EcommerceN'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0F34B9B5F3B34A1B9F2CF999DBEF5265 }}
-          package: '*.jar'
-       
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_05C0E1F6A4F944CF8B0B1B3A7605B503 }}
+          package: '*.war'
